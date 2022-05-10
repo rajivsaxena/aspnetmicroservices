@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Basket.API.Controllers
 {
-    [Route("api/[controller]")]
+    
     [ApiController]
+    [Route("api/v1/[controller]")]
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
@@ -18,7 +19,7 @@ namespace Basket.API.Controllers
             _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
         }
         
-        [HttpGet("userName",Name ="GetBasket")]
+        [HttpGet("{userName}",Name = "GetBasket")]
         [ProducesResponseType(typeof(ShoppingCart),(int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {
